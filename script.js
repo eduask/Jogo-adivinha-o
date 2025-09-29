@@ -1,37 +1,60 @@
+let sort = Math.floor(Math.random() * 100) + 1;
+let tentativas = 5;
+let vitorias = 0; 
 
-let sort = Math.floor(Math.random()*100)+1;
-console.log(sort)
-let tentativas = 5
-document.getElementById("chances").innerHTML = "Tentativas:" + tentativas;
+
 let saida = document.getElementById("output");
-function clique(){
-    //entrada
-    let valor = document.getElementById("input").value;
+let chancesDisplay = document.getElementById("chances");
+let placarDisplay = document.getElementById("placar"); 
+let input = document.getElementById("input");
+let btnChutar = document.getElementById("btn");
 
-    if(valor >= 0 && valor <=100){
-        if(valor == sort){
-            saida.innerHTML = "Acertou";
-        } if(valor < sort){
-            saida.innerHTML = "O valor digitado é menor";
-        } if(valor > sort){
-            saida.innerHTML = "O valor digitado é maior";
+
+chancesDisplay.innerHTML = "Tentativas: " + tentativas;
+placarDisplay.innerHTML = "Vitórias: " + vitorias;
+
+function clique() {
+    let valor = input.value;
+
+
+    if (valor === "") {
+        saida.innerHTML = "Por favor, digite um número.";
+        return;
+    }
+
+    valor = parseInt(valor); 
+
+    if (valor >= 1 && valor <= 100) {
+        if (valor === sort) {
+            saida.innerHTML = "🎉 Acertou! 🎉";
+            vitorias++;
+            placarDisplay.innerHTML = "Vitórias: " + vitorias; 
+            btnChutar.disabled = true; 
+        } else if (valor < sort) {
+            saida.innerHTML = "O número sorteado é maior ⬆️";
+        } else {
+            saida.innerHTML = "O número sorteado é menor ⬇️";
         }
-    } else{
-        saida.innerHTML = "Está fora do intervalo";
+    } else {
+        saida.innerHTML = "Digite um número entre 1 e 100.";
     }
-    tentativas--;
-    document.getElementById("chances").innerHTML = "Tentativas:" + tentativas;
-    if (tentativas < 1){
-        document.getElementById("btn").disabled = true;
-        saida.innerHTML = "Acabaram as tentativas, o número sorteado era: " + sort;
+
+    if (valor !== sort) {
+        tentativas--;
+        chancesDisplay.innerHTML = "Tentativas: " + tentativas;
+    }
+
+    if (tentativas < 1 && valor !== sort) {
+        btnChutar.disabled = true;
+        saida.innerHTML = "Acabaram as tentativas. O número era: " + sort;
     }
 }
 
-function novo(){
-    sort = Math.floor(Math.random()*100)+1;
+function novo() {
+    sort = Math.floor(Math.random() * 100) + 1;
     tentativas = 5;
-    document.getElementById("chances").innerHTML = "Tentativas:" + tentativas;
-     document.getElementById("btn").disabled = false;
-     saida.innerHTML = ""
+    chancesDisplay.innerHTML = "Tentativas: " + tentativas;
+    btnChutar.disabled = false;
+    saida.innerHTML = "";
+    input.value = "";
 }
-    

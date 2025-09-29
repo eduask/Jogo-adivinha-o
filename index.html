@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jogo de Adivinhação</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <h1>Adivinhe um numero de 1 a 100</h1>
+    <h1>Adivinhe um número de 1 a 100</h1>
     <div class="box">
-    <input type="number" id="input">
-    <button id="btn" onclick="clique()">Clique aqui</button>
-    <button onclick="novo()">Novo jogo</button>
-    <p id="output"></p>
-    <p id="chances"></p>
+        <input type="number" id="input">
+        <button id="btn" onclick="clique()">Chutar</button>
+        <button onclick="novo()">Novo Jogo</button>
+        <p id="output"></p>
+        <p id="chances"></p>
+        <!-- Adicione esta linha para o placar -->
+        <p id="placar"></p> 
     </div>
 </body>
-
 </html>
